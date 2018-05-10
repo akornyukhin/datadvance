@@ -13,15 +13,15 @@ Initial task:
 Например, следующий скрипт генерирует случайный набор таких инцидентов при N=10, M=2, и выписывает в csv-файл:
  
 # ====
-import numpy as np
-import pandas as pd 
+import numpy as np<br />
+import pandas as pd
  
-M = 2
+M = 2<br />
 N = 10
  
-df = pd.DataFrame({'feature1':np.random.randint(M, size=(N,)),
-                   'feature2':np.random.randint(M, size=(N,)),
-                   'time':np.random.rand(N)
+df = pd.DataFrame({'feature1':np.random.randint(M, size=(N,)),<br />
+                   'feature2':np.random.randint(M, size=(N,)),<br />
+                   'time':np.random.rand(N)<br />
                    })
  
 df.to_csv('incidents.csv', index_label='id')
