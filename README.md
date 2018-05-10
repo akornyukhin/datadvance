@@ -1,8 +1,8 @@
 # datadvance
 DATADVANCE test task
 
-To run script from terminal:
-python app.py <input_path> <output_path> <dT>
+To run script from terminal: <br />
+**python app.py <input_path> <output_path>** 
 
 
 
