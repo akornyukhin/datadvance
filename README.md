@@ -8,11 +8,11 @@ To run script from terminal: <br />
 
 Initial task:
 
-"У нас есть набор "инцидентов", N штук. Каждый инцидент имеет id с последовательными значениями от 0 до N-1, два категориальных признака с какими-то целыми значениями от 0 до M-1, и признак времени с каким-то (нецелым) значением от 0 до 1.
+You have N incidents. Each of the incident has an _id_ [0, N-1] and two _categorical features_ with values [0,M-1] and a _timestamp_.
  
-Например, следующий скрипт генерирует случайный набор таких инцидентов при N=10, M=2, и выписывает в csv-файл:
- 
-# ====
+The following script generates and exmaple with N=10 and M=2
+
+## ====
 import numpy as np<br />
 import pandas as pd
  
@@ -25,9 +25,9 @@ df = pd.DataFrame({'feature1':np.random.randint(M, size=(N,)),<br />
                    })
  
 df.to_csv('incidents.csv', index_label='id')
-# =====
+## =====
  
-Пример сгенерированного файла:
+Generated file example:
  
 id,feature1,feature2,time<br />
 0,1,0,0.206520219143<br />
@@ -41,11 +41,15 @@ id,feature1,feature2,time<br />
 8,1,1,0.823812651856<br />
 9,0,1,0.906011017725
  
-Задача заключается в следующем: надо написать на Python или C/C++ функцию, которая получает на вход dT и файл с инцидентами, и вычисляет для каждого из N инцидентов количество инцидентов из того же файла, которые удовлетворяют следующим условиям:<br />
-1) предшествуют данному инциденту по времени, при этом разница по времени не превосходит dT;<br />
-2) имеют значения feature1 и feature2, совпадающие с соответствующими значениями данного инцидента.
- 
-Например, в случае dT=0.3 для приведенного выше примера ответ должен выглядеть так:
+# ====
+
+The task is to write a sript which gets a dT argument and a csv file with incidents, and for each incidents calculate the number of other incidents which full-fill the following rules:
+* the incident was prior to the overviewed incident and the timedifference is <=DT
+* the feaure1 and feature2 fields are the same as overviewed incident's fields
+The results should be written in a csv-file.
+
+
+For example for dT=0.3 the output should be as followed:
  
 id,count<br />
 0,0<br />
@@ -58,15 +62,5 @@ id,count<br />
 7,1<br />
 8,0<br />
 9,1
- 
-Функция должна считывать csv-файл с инцидентами, вычислять результаты для всех инцидентов и выписывать их в csv-файл указанного вида.
- 
-Основной нюанс: функция должна рабoтать достаточно быстро, а именно не дольше минуты при M=100, N=1000000, dT=0.3."
- 
-Также направляю дополнительную информацию к заданию, обратите, пожалуйста, внимание:
-К решению на python:
-1) python3 из сборки anaconda3 версии не ниже 4.3.14
-2) без установки дополнительных библиотек через conda/pip
-3) код должен быть оформлен в виде функции в файле
-4) код должен работать на linux (ubuntu 14.04 и выше), либо mac osx 10 и выше (с указанной сборкой анаконды в п.1)
-5) Потребление памяти не более 2гб
+
+
